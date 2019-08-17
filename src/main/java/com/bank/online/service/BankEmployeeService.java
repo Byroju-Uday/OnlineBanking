@@ -3,9 +3,12 @@ package com.bank.online.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.bank.online.model.BankEmployee;
 import com.bank.online.model.Customer;
 
 public interface BankEmployeeService {
+	
+	public BankEmployee saveBankEmployee(BankEmployee bankEmployee);
 	
 	Customer saveCustomer(Customer customer);
 

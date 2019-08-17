@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bank.online.model.BankEmployee;
 import com.bank.online.model.Customer;
 import com.bank.online.service.BankEmployeeService;
 
@@ -25,12 +26,13 @@ import com.bank.online.service.BankEmployeeService;
 public class BankEmployeeController {
 	
 	@Autowired
-	private BankEmployeeService employeeService;
+	private BankEmployeeService bankEmployeeService;
 	
 	@GetMapping("/")
 	public String bankLandingPage()
 	{
 		System.out.println("Came inside bankLandingPage function");
+		bankEmployeeService.saveBankEmployee(new BankEmployee());
 		return "onlineBankLanding";
 	}
 	
@@ -79,7 +81,7 @@ public class BankEmployeeController {
 			}
 			System.out.println("Inside CustomerRegistration");
 			System.out.println(customer);
-			this.employeeService.saveCustomer(customer);
+			this.bankEmployeeService.saveCustomer(customer);
 			System.out.println("Records Saved Succesfully");
 			return "customerDashboard";
 		}
@@ -96,7 +98,7 @@ public class BankEmployeeController {
 		public String customerDeletion(@RequestParam("customerId")long customerId)
 		{
 			System.out.println("Inside CustomerDeletion");
-			this.employeeService.deleteCustomer(customerId);
+			this.bankEmployeeService.deleteCustomer(customerId);
 			System.out.println("Records deleted Succesfully");
 			return "customerDashboard";
 		}

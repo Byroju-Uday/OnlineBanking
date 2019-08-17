@@ -8,19 +8,32 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bank.online.model.BankEmployee;
 import com.bank.online.model.Customer;
+import com.bank.online.repository.BankEmployeeRepository;
 import com.bank.online.repository.CustomerRepository;
 
 @Service
 public class BankEmployeeServiceImpl implements BankEmployeeService{
+	
+	@Autowired
+	private BankEmployeeRepository bankEmployeeRepository; 
 
 	@Autowired
 	private CustomerRepository customerRepository;
 	
 	@Autowired
-	public BankEmployeeServiceImpl(CustomerRepository customerRepository)
+	public BankEmployeeServiceImpl(CustomerRepository customerRepository, BankEmployeeRepository bankEmployeeRepository)
 	{
-		this.customerRepository=customerRepository;
+		this.customerRepository = customerRepository;
+		this.bankEmployeeRepository = bankEmployeeRepository;
+	}
+	
+	@Override
+	@Transactional
+	public BankEmployee saveBankEmployee(BankEmployee bankEmployee) {
+		System.out.println("The Records"+bankEmployee);
+		return bankEmployeeRepository.save(bankEmployee);
 	}
 	
 	@Override

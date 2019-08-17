@@ -15,7 +15,7 @@ import com.bank.online.model.Customer;
 import com.bank.online.service.BankEmployeeService;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/employee")
 public class BankEmployeeRestController {
 
 	@Autowired
