@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Error Page</title>
 </head>
 <body>
-<h1>Please Check!! There are error in Cusotmer Registration</h1>
+<h1>Please Check!! There are error in Customer Registration</h1>
 </body>
 </html>

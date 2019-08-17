@@ -4,15 +4,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Customer Registration</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container" id="login">
+<div class="container" id="registration">
 <h1>Customer Registration</h1>
-	<form action="/users/register" method="POST" >
+	<form action="/employee/register" method="POST" >
 	<div class="form-row">
+	<div class="form-group col-md-6">
+      <label for="customerId">CustomerId</label>
+      <input type="number" class="form-control" name = "customerId" id="customerId" placeholder="CustomerId">
+    </div>
     <div class="form-group col-md-6">
       <label for="customerName">CustomerName</label>
       <input type="text" class="form-control" name = "customerName" id="customerName" placeholder="CustomerName">

@@ -1,6 +1,7 @@
 package com.bank.online.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.bank.online.model.Customer;
 
@@ -10,7 +11,7 @@ public interface BankEmployeeService {
 
     List<Customer> listAll();
 
-    Customer findById(long customerId);
+    Optional<Customer> findById(long customerId);
 
     void deleteCustomer(long customerId);
 }

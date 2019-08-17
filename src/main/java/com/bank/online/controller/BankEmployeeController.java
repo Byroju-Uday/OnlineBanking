@@ -1,40 +1,110 @@
 package com.bank.online.controller;
 
-import java.util.List;
+import java.io.IOException;
+import java.sql.Date;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.bank.online.model.Customer;
 import com.bank.online.service.BankEmployeeService;
 
-@RestController
-@RequestMapping("/api/v1/")
+@Controller
+@RequestMapping("/employee")
 public class BankEmployeeController {
-
+	
 	@Autowired
 	private BankEmployeeService employeeService;
-
-	    @GetMapping(value = "/employees")
-	    public List<Customer> listAll(){
-	        System.out.println("Inside the list all method....");
-	        return this.employeeService.listAll();
-	    }
-
-	    @GetMapping("/employees/{id}")
-	    public Customer findEmployeeById(@PathVariable("id") long id){
-	        return this.employeeService.findById(id);
-	    }
-
-	    @PostMapping("/employees")
-	    public void saveEmployee(@Valid @RequestBody Customer customer){
-	        this.employeeService.saveCustomer(customer);
-	    }
+	
+	@GetMapping("/")
+	public String bankLandingPage()
+	{
+		System.out.println("Came inside bankLandingPage function");
+		return "onlineBankLanding";
 	}
+	
+	@GetMapping(value="/register")
+	public String showCustomerRegistrationForm(Model model)
+	{
+		System.out.println("Came inside the ShowCustomer");
+		System.out.println("Calling new Customer from get");
+		model.addAttribute("customer", new Customer());
+		System.out.println(model);
+		return "customerRegistration";
+	}
+	
+//	@PostMapping(value="/register")
+//	public String customerRegistration( @Valid @ModelAttribute("customer") Customer customer,
+//			BindingResult bindingResult) throws IOException
+//	{
+//		if(bindingResult.hasErrors()){
+//            System.out.println("Error "+bindingResult.toString());
+//            return "error";
+//		}
+//		System.out.println("Inside CustomerRegistration");
+//		System.out.println(customer);
+//		this.customerService.saveCustomer(customer);
+//		System.out.println("Records Saved Successfully");
+//		return "customerDashboard";
+//	}
+	
+		@PostMapping(value="/register")
+		public String customerRegistration(
+				 @RequestParam("customerId")long customerId, 
+				 @RequestParam("customerName")String userName,
+				 @RequestParam("password")String   password,
+				 @RequestParam("emailId")String emailId,
+				 @RequestParam("dob")Date dob,
+				 @RequestParam("inputAddress")String inputAddress,
+				 @RequestParam("aadharNo")long aadharNo,
+				 @RequestParam("pancardNo")String pancardNo,
+				 @RequestParam("phoneNo")long phoneNo,
+				 @Valid @ModelAttribute("customer") Customer customer,
+				BindingResult bindingResult) throws IOException
+		{
+			if(bindingResult.hasErrors()){
+	            System.out.println("Error "+bindingResult.toString());
+	            return "error";
+			}
+			System.out.println("Inside CustomerRegistration");
+			System.out.println(customer);
+			this.employeeService.saveCustomer(customer);
+			System.out.println("Records Saved Succesfully");
+			return "customerDashboard";
+		}
+		
+		@GetMapping(value="/delete")
+		public String showCustomerDeletionForm()
+		{
+			System.out.println("Came inside the DeleteCustomer");
+			System.out.println("Calling delete Customer from get");
+			return "customerDeletion";
+		}
+		
+		@PostMapping(value="/delete")
+		public String customerDeletion(@RequestParam("customerId")long customerId)
+		{
+			System.out.println("Inside CustomerDeletion");
+			this.employeeService.deleteCustomer(customerId);
+			System.out.println("Records deleted Succesfully");
+			return "customerDashboard";
+		}
+		
+				
+		@ExceptionHandler(IOException.class)
+	    public String handleException(HttpServletRequest request, Exception ex){
+	        return "customerError";
+	    }
+
+}
