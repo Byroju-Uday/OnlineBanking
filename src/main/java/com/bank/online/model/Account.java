@@ -29,7 +29,7 @@ public class Account {
 	private long accountBalance;
 	
 //	@ManyToOne
-//	@JoinColumn(name = "id" , nullable = false)
+//	@JoinColumn(name = "customerId" , nullable = false)
 //	private Customer customer;
 	
 	public long getId() {
