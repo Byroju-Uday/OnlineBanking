@@ -38,6 +38,12 @@ public class CustomerController {
 		return "customerRegistration";
 	}
 	
+	@GetMapping("/")
+	public String bankLandingPage()
+	{
+		return "onlineBankLanding";
+	}
+	
 //	@PostMapping(value="/register")
 //	public String customerRegistration( @Valid @ModelAttribute("customer") Customer customer,
 //			BindingResult bindingResult) throws IOException
