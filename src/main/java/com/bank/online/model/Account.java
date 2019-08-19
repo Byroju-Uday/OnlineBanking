@@ -28,9 +28,9 @@ public class Account {
 	@Column
 	private long accountBalance;
 	
-//	@ManyToOne
-//	@JoinColumn(name = "customerId" , nullable = false)
-//	private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "customerId" , nullable = false) 
+    private Customer customer;
 	
 	public long getId() {
 		return id;
@@ -63,5 +63,4 @@ public class Account {
 	public void setAccountBalance(long accountBalance) {
 		this.accountBalance = accountBalance;
 	}
-
 }
