@@ -7,8 +7,6 @@ import javax.validation.constraints.NotNull;
 @Table
 public class BankEmployee {
 
-    public BankEmployee(){}
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long employeeId;
@@ -22,11 +20,11 @@ public class BankEmployee {
     @NotNull(message = "Role cannot be null")
     private String employeeRole;
 
-    public BankEmployee(long employeeId, String employeeName, String employeePassword, String employeeRole){
-        this.employeeId = employeeId;
-        this.employeeName = employeeName;
-        this.employeePassword = employeePassword;
-        this.employeeRole = employeeRole;
+    public BankEmployee(){
+        this.employeeId = 12;
+        this.employeeName = "employee";
+        this.employeePassword = "employee";
+        this.employeeRole = "admin";
     }
 
 	public long getEmployeeId() {

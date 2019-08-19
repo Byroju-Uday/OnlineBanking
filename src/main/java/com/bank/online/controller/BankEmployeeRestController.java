@@ -18,7 +18,7 @@ import com.bank.online.model.Customer;
 import com.bank.online.service.BankEmployeeService;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/employee")
 public class BankEmployeeRestController {
 
 	@Autowired
@@ -30,11 +30,11 @@ public class BankEmployeeRestController {
 	        return this.employeeService.listAll();
 	    }
 	 
-	 @GetMapping(value = "/bankerlogin/{id}/{pwd}")
-	    public Optional<BankEmployee> bankerLogin(@PathVariable("id") long id,@PathVariable("pwd") String pwd){
-	        System.out.println("Inside the list all method....");
-	        return this.employeeService.findByEmployeeIdAndEmployeePassword(id, pwd);
-	    }
+//	 @GetMapping(value = "/bankerlogin/{id}/{pwd}")
+//	    public Optional<BankEmployee> bankerLogin(@PathVariable("id") long id,@PathVariable("pwd") String pwd){
+//	        System.out.println("Inside the list all method....");
+//	        return this.employeeService.findByEmployeeIdAndEmployeePassword(id, pwd);
+//	    }
 	 
 	 @PostMapping(value = "/addCustomers")
 	    public void saveCustomers(@Valid @RequestBody Customer customer){

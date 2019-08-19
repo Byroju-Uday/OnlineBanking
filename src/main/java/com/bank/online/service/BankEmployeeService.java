@@ -8,6 +8,8 @@ import com.bank.online.model.Customer;
 
 public interface BankEmployeeService {
 	
+	public BankEmployee saveBankEmployee(BankEmployee bankEmployee);
+	
 	Customer saveCustomer(Customer customer);
 
     List<Customer> listAll();
@@ -16,6 +18,6 @@ public interface BankEmployeeService {
 
     void deleteCustomer(long customerId);
     
-	Optional<BankEmployee> findByEmployeeIdAndEmployeePassword(long id,String pwd);
+	//Optional<BankEmployee> findByEmployeeIdAndEmployeePassword(long id,String pwd);
 
 }
