@@ -3,6 +3,7 @@ package com.bank.online.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.bank.online.model.BankEmployee;
 import com.bank.online.model.Customer;
 
 public interface BankEmployeeService {
@@ -14,4 +15,7 @@ public interface BankEmployeeService {
     Optional<Customer> findById(long customerId);
 
     void deleteCustomer(long customerId);
+    
+	Optional<BankEmployee> findByEmployeeIdAndEmployeePassword(long id,String pwd);
+
 }

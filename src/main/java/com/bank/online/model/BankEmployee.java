@@ -1,4 +1,4 @@
-package com.bank.online.model;
+ package com.bank.online.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

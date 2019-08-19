@@ -57,6 +57,7 @@
   </div>
   <button type="submit" class="btn btn-primary">Register</button>
 </form>
+<button align="right" type="submit" class="btn btn-primary">OpenAccount</button>
 </div>
 </body>
 </html>

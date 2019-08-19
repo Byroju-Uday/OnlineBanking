@@ -8,7 +8,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bank.online.model.BankEmployee;
 import com.bank.online.model.Customer;
+import com.bank.online.repository.BankRepository;
 import com.bank.online.repository.CustomerRepository;
 
 @Service
@@ -18,10 +20,16 @@ public class BankEmployeeServiceImpl implements BankEmployeeService{
 	private CustomerRepository customerRepository;
 	
 	@Autowired
-	public BankEmployeeServiceImpl(CustomerRepository customerRepository)
+	private BankRepository bankRepository;
+	
+	@Autowired
+	public BankEmployeeServiceImpl(CustomerRepository customerRepository,BankRepository bankRepository)
 	{
 		this.customerRepository=customerRepository;
+		this.bankRepository=bankRepository;
+
 	}
+	
 	
 	@Override
 	@Transactional
@@ -49,4 +57,12 @@ public class BankEmployeeServiceImpl implements BankEmployeeService{
 		System.out.println("Deleting customer based on Id");
 		this.customerRepository.deleteById(customerId);
 	}
+
+	@Override
+	public Optional<BankEmployee> findByEmployeeIdAndEmployeePassword(long id, String pwd) {
+		// TODO Auto-generated method stub
+		return 	this.bankRepository.findByEmployeeIdAndEmployeePassword(id, pwd);
+
+	}
+	
 }

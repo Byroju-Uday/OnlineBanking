@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bank.online.model.BankEmployee;
 import com.bank.online.model.Customer;
 import com.bank.online.service.BankEmployeeService;
 
@@ -44,6 +45,11 @@ public class BankEmployeeController {
 		return "customerRegistration";
 	}
 	
+	@GetMapping(value="/employeeLogin")
+	public String employeeLogin()
+	{
+		return "employeeLogin";
+	}
 //	@PostMapping(value="/register")
 //	public String customerRegistration( @Valid @ModelAttribute("customer") Customer customer,
 //			BindingResult bindingResult) throws IOException
@@ -79,6 +85,13 @@ public class BankEmployeeController {
 			}
 			System.out.println("Inside CustomerRegistration");
 			System.out.println(customer);
+			BankEmployee bankemployee = new BankEmployee();
+			bankemployee.setEmployeeId(12);
+			bankemployee.setEmployeeName("Byroju Uday");
+			bankemployee.setEmployeePassword("1234");
+			bankemployee.setEmployeeRole("Admin");
+			
+			
 			this.employeeService.saveCustomer(customer);
 			System.out.println("Records Saved Succesfully");
 			return "customerDashboard";
