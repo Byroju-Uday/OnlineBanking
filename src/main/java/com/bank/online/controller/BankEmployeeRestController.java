@@ -1,12 +1,14 @@
 package com.bank.online.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,12 @@ public class BankEmployeeRestController {
 	        System.out.println("Inside the list all method....");
 	        return this.bankEmployeeService.listAll();
 	    }
+	 
+//	 @GetMapping(value = "/bankerlogin/{id}/{pwd}")
+//	    public Optional<BankEmployee> bankerLogin(@PathVariable("id") long id,@PathVariable("pwd") String pwd){
+//	        System.out.println("Inside the list all method....");
+//	        return this.employeeService.findByEmployeeIdAndEmployeePassword(id, pwd);
+//	    }
 	 
 	 @PostMapping(value = "/addCustomers")
 	    public void saveCustomers(@Valid @RequestBody Customer customer){

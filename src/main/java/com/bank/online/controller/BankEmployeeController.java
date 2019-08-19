@@ -46,6 +46,11 @@ public class BankEmployeeController {
 		return "customerRegistration";
 	}
 	
+	@GetMapping(value="/employeeLogin")
+	public String employeeLogin()
+	{
+		return "employeeLogin";
+	}
 //	@PostMapping(value="/register")
 //	public String customerRegistration( @Valid @ModelAttribute("customer") Customer customer,
 //			BindingResult bindingResult) throws IOException
