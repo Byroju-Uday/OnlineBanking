@@ -21,7 +21,7 @@ public class BankEmployeeRestController {
 	@Autowired
 	private BankEmployeeService employeeService;
 	 
-	 @GetMapping(value = "/addCustomers")
+	 @GetMapping(value = "/showCustomers")
 	    public List<Customer> listAll(){
 	        System.out.println("Inside the list all method....");
 	        return this.employeeService.listAll();

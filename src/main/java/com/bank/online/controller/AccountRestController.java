@@ -21,7 +21,7 @@ public class AccountRestController {
 	@GetMapping(value = "/accounts")
     public List<Account> listAll(){
         System.out.println("Inside the list all method....");
-        return this.accountService.listAllAccounts();
+        return this.accountService.listAll();
     }
 
     @GetMapping("/accounts/{id}")

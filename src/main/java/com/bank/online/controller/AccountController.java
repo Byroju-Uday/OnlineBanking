@@ -48,7 +48,7 @@ public class AccountController {
     
     @GetMapping("/listAll")
     public String listAllEmployees(Model model){
-        List<Account> accounts = this.accountService.listAllAccounts();
+        List<Account> accounts = this.accountService.listAll();
         model.addAttribute("accounts", accounts);
         return "list";
     }

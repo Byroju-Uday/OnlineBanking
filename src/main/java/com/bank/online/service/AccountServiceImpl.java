@@ -1,6 +1,8 @@
 package com.bank.online.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -10,31 +12,54 @@ import org.springframework.stereotype.Service;
 import com.bank.online.model.Account;
 import com.bank.online.repository.AccountRepository;
 
+
 @Service
 public class AccountServiceImpl implements AccountService{
 	
 	@Autowired
 	private AccountRepository accountRepository;
 	
-	public AccountServiceImpl(AccountRepository accountRepository){
+	@Autowired
+	public AccountServiceImpl(AccountRepository accountRepository)
+	{
 		this.accountRepository=accountRepository;
 	}
 	
 	@Override
 	@Transactional
-	public Account saveAccount(Account account){
-	return this.accountRepository.save(account);
+	public Account saveAccount(Account account) {
+		// TODO Auto-generated method stub
+		return accountRepository.save(account);
 	}
-	  
+	
 	@Override
-	@Transactional	
-	public List<Account> listAllAccounts(){
-		return this.accountRepository.findAll();  
-	  }
-	  
+	@Transactional
+	public List<Account> listAll() {
+		// TODO Auto-generated method stub
+		List<Account> list = new ArrayList<>();
+    	this.accountRepository.findAll().forEach(account -> list.add(account));
+    	return list;
+	}
+	
 	@Override
-	@Transactional 
-	public Account findById(long accId) {
-		return this.accountRepository.findById(accId).get();  
-	  }
+	@Transactional
+	public Account findById(long accountId) {
+		// TODO Auto-generated method stub
+		return this.accountRepository.findById(accountId).get();
+	}
+
+	@Override
+	@Transactional
+	public void deleteAccount(long accountId) {
+		// TODO Auto-generated method stub
+		
+		this.accountRepository.deleteById(accountId);
+		
+	}
+
+	@Override
+	public Optional<Account> listById(long accountId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

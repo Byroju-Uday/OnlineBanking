@@ -57,8 +57,8 @@ public class TransactionController {
 		System.out.println("Inside Transaction");
 		transaction.setTypeOfTransaction(typeoftransaction);
 		transaction.setAvailableBalance(availablebalance);
-		transaction.setFromCustomerId(fromcustomerid);
-		transaction.setToCustomerId(tocustomerid);
+		transaction.setFromAccountId(fromcustomerid);
+		transaction.setToAccountId(tocustomerid);
 		transaction.setStatus(status);
 		transaction.setTransactionAmount(transactionamount);
 		long millis=System.currentTimeMillis();  
