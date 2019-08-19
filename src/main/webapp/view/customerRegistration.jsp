@@ -11,7 +11,7 @@
 <body>
 <div class="container" id="registration">
 <h1>Customer Registration</h1>
-	<form action="/employee/register" method="POST" >
+	<form action="/employee/register" method="POST" modelattribute="customer">
 	<div class="form-row">
 	<div class="form-group col-md-6">
       <label for="customerId">CustomerId</label>
