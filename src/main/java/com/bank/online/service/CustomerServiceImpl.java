@@ -29,4 +29,15 @@ public class CustomerServiceImpl implements CustomerService {
 		System.out.println("Finding Id by Customer Id");
 		return this.customerRepository.findById(customerId);
 	}
+
+	@Override
+	public Customer findById(long accId) {
+		return this.customerRepository.findById(accId).get();  
+	}
+
+	@Override
+	public Customer create(Customer customer) {
+		
+		return customerRepository.save(customer);
+	}
 }

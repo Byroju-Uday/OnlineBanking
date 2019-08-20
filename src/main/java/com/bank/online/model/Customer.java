@@ -1,23 +1,28 @@
 package com.bank.online.model;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table
 public class Customer {
-	
+
 	public Customer(){
 		System.out.println("Entered Customer Constructor withOut Parameters");
 	}
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long customerId;
 	private String customerName;
 	private String password;
@@ -27,10 +32,9 @@ public class Customer {
 	private String pancardNo;
 	private String emailId;
 	private String address;
-	
-	
-	
-	
+
+	@OneToMany(targetEntity=Account.class,mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Account> accounts = new HashSet<>(); 
 
 	public long getCustomerId() {
 		return customerId;
@@ -121,9 +125,23 @@ public class Customer {
 		this.address = address;
 	}
 
+	public Set<Account> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<Account> accounts) {
+		this.accounts = accounts;
+	}
+
+	public void addAccount(Account account) {
+		this.accounts.add(account);
+		account.setCustomer(this);
+	}
+
+
 	public Customer(long customerId, String customerName, String password, long phoneNo, Date dob, long aadharNo,
 			String pancardNo, String emailId, String address) {
-		
+
 		super();
 		System.out.println("Entered Customer Constructor with Parameters");
 		this.customerId = customerId;
@@ -137,14 +155,14 @@ public class Customer {
 		this.address = address;
 	}
 
-	
+
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", password=" + password
 				+ ", phoneNo=" + phoneNo + ", dob=" + dob + ", aadharNo=" + aadharNo + ", pancardNo=" + pancardNo
 				+ ", emailId=" + emailId + ", address=" + address + "]";
 	}
-	
-	
-	
+
+
+
 }
