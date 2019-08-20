@@ -51,15 +51,17 @@ public class BankEmployeeServiceImpl implements BankEmployeeService{
     }
 
     @Override
-    public Optional<Customer> findById(long customerId) {
+    @Transactional
+    public Customer findById(long customerId) {
         // TODO Auto-generated method stub
         System.out.println("Finding Id by Customer Id");
-        return this.customerRepository.findById(customerId);
+        return this.customerRepository.findById(customerId).get();
     }
 
     @Override
+    @Transactional
     public void deleteCustomer(long customerId) {
         System.out.println("Deleting customer based on Id");
-        this.customerRepository.deleteById(customerId);
+        this.customerRepository.deleteById(customerId);;
     }
 }

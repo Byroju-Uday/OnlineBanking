@@ -14,7 +14,7 @@ public interface BankEmployeeService {
 
     List<Customer> listAll();
 
-    Optional<Customer> findById(long customerId);
+    Customer findById(long customerId);
 
     void deleteCustomer(long customerId);
     
