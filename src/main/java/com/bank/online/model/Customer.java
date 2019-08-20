@@ -20,12 +20,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table
 public class Customer {
-	
+
 	public Customer(){
 		System.out.println("Entered Customer Constructor withOut Parameters");
 	}
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long customerId;
 	private String customerName;
 	private String password;
@@ -54,7 +54,6 @@ public class Customer {
     	this.bankAccountSet.add(account);
     	
     }
-	
 
 	public long getCustomerId() {
 		return customerId;
@@ -147,7 +146,7 @@ public class Customer {
 
 	public Customer(long customerId, String customerName, String password, long phoneNo, String dob, long aadharNo,
 			String pancardNo, String emailId, String address) {
-		
+
 		super();
 		System.out.println("Entered Customer Constructor with Parameters");
 		this.customerId = customerId;
@@ -160,7 +159,6 @@ public class Customer {
 		this.emailId = emailId;
 		this.address = address;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -232,16 +230,10 @@ public class Customer {
 			return false;
 		return true;
 	}
-
-
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", password=" + password
 				+ ", phoneNo=" + phoneNo + ", dob=" + dob + ", aadharNo=" + aadharNo + ", pancardNo=" + pancardNo
 				+ ", emailId=" + emailId + ", address=" + address + ", bankAccountSet=" + bankAccountSet + "]";
 	}
-
-	
-	
-	
 }

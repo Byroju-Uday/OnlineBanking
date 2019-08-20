@@ -62,12 +62,4 @@ public class CustomerServiceImpl implements CustomerService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-//	@Override
-//	@Transactional
-//	public void addTweetToId(long userId) {
-//		User user = this.userRepository.findById(userId).get();
-//		
-//		
-//	}
 }
