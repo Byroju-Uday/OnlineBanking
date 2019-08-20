@@ -29,7 +29,7 @@
 <body>
 <h1 class="display-4" align="center">Account Details</h1>
 <div class="container" id="AddAccount">
-	<form:form action="/forms/register" method="POST" modelAttribute="account">
+	<form:form action="/employee/createaccount" method="POST" modelAttribute="account">
 	    <div class="form-row">
 		<div class="form-group col-md-6">
 			<label for="accountType">Account Type</label> 

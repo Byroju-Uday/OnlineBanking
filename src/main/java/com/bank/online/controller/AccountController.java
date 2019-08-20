@@ -22,19 +22,19 @@ import com.bank.online.service.AccountService;
 
 
 @Controller
-@RequestMapping("/forms")
+@RequestMapping("/employee")
 public class AccountController {
 
 	@Autowired
 	private AccountService accountService;
 	
-    @GetMapping("/register")
+    @GetMapping("/createaccount")
     public String showRegistrationForm(Model model){
         model.addAttribute("account", new Account());
         return "CreateAccount";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/createaccount")
     public String registerUser( @Valid @ModelAttribute("account") Account account,
                                 BindingResult bindingResult) throws IOException {
         if(bindingResult.hasErrors()){

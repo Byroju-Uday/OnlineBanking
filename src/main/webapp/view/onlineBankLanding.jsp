@@ -40,6 +40,10 @@
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="employeeLogin"><img src="../assets/login.png" class="img-fluid" alt="Responsive image"></a>
+      </li>
     </ul>
   </div>
 </nav>

@@ -52,7 +52,6 @@ public class Account {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-
 	
 
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -150,4 +149,13 @@ public class Account {
 		this.accountBalance = accountBalance;
 	}
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	
 }

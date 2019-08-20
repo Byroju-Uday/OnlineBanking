@@ -21,6 +21,7 @@ import com.bank.online.service.TransactionService;
 
 @CrossOrigin
 @RestController
+@CrossOrigin
 @RequestMapping(value = "/api/v1/")
 public class TransactionRESTController {
 

@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.bank.online.model.Customer;
 import com.bank.online.service.CustomerService;
 
 @RestController 
+@CrossOrigin(origins= "http://localhost:4200")
 @RequestMapping("/customer")
 public class CustomerRestController {
 	
