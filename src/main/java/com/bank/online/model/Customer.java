@@ -3,8 +3,8 @@ package com.bank.online.model;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -22,12 +22,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 @Table
 public class Customer {
-	
+
 	public Customer(){
 		System.out.println("Entered Customer Constructor withOut Parameters");
 	}
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long customerId;
 	private String customerName;
 	private String password;
@@ -58,7 +58,6 @@ public class Customer {
     	this.bankAccountSet.add(account);
     	
     }
-	
 
 	public long getCustomerId() {
 		return customerId;
@@ -148,6 +147,22 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+
+	public Customer(long customerId, String customerName, String password, long phoneNo, String dob, long aadharNo,
+			String pancardNo, String emailId, String address) {
+
+		super();
+		System.out.println("Entered Customer Constructor with Parameters");
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.password = password;
+		this.phoneNo = phoneNo;
+		this.dob = dob;
+		this.aadharNo = aadharNo;
+		this.pancardNo = pancardNo;
+		this.emailId = emailId;
+		this.address = address;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -222,11 +237,7 @@ public class Customer {
 				+ ", phoneNo=" + phoneNo + ", dob=" + dob + ", aadharNo=" + aadharNo + ", pancardNo=" + pancardNo
 				+ ", emailId=" + emailId + ", address=" + address + ", bankAccountSet=" + bankAccountSet + "]";
 	}
-	
 
 	
 
-	
-	
-	
 }

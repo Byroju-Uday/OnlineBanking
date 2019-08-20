@@ -15,51 +15,51 @@ import com.bank.online.repository.CustomerRepository;
 
 @Service
 public class BankEmployeeServiceImpl implements BankEmployeeService{
-	
-	@Autowired
-	private BankEmployeeRepository bankEmployeeRepository; 
+    
+    @Autowired
+    private BankEmployeeRepository bankEmployeeRepository; 
 
-	@Autowired
-	private CustomerRepository customerRepository;
-	
-	@Autowired
-	public BankEmployeeServiceImpl(CustomerRepository customerRepository, BankEmployeeRepository bankEmployeeRepository)
-	{
-		this.customerRepository = customerRepository;
-		this.bankEmployeeRepository = bankEmployeeRepository;
-	}
-	
-	@Override
-	@Transactional
-	public BankEmployee saveBankEmployee(BankEmployee bankEmployee) {
-		System.out.println("The Records"+bankEmployee);
-		return bankEmployeeRepository.save(bankEmployee);
-	}
-	
-	@Override
-	@Transactional
-	public Customer saveCustomer(Customer customer) {
-		System.out.println("The Records"+customer);
-		return customerRepository.save(customer);
-	}
+    @Autowired
+    private CustomerRepository customerRepository;
+    
+    @Autowired
+    public BankEmployeeServiceImpl(CustomerRepository customerRepository, BankEmployeeRepository bankEmployeeRepository)
+    {
+        this.customerRepository = customerRepository;
+        this.bankEmployeeRepository = bankEmployeeRepository;
+    }
+    
+    @Override
+    @Transactional
+    public BankEmployee saveBankEmployee(BankEmployee bankEmployee) {
+        System.out.println("The Records"+bankEmployee);
+        return bankEmployeeRepository.save(bankEmployee);
+    }
+    
+    @Override
+    @Transactional
+    public Customer saveCustomer(Customer customer) {
+        System.out.println("The Records"+customer);
+        return customerRepository.save(customer);
+    }
 
-	@Override
-	@Transactional
-	public List<Customer> listAll() {
-		System.out.println("Listing all the records");
-		return this.customerRepository.findAll();
-	}
+    @Override
+    @Transactional
+    public List<Customer> listAll() {
+        System.out.println("Listing all the records");
+        return this.customerRepository.findAll();
+    }
 
-	@Override
-	public Optional<Customer> findById(long customerId) {
-		// TODO Auto-generated method stub
-		System.out.println("Finding Id by Customer Id");
-		return this.customerRepository.findById(customerId);
-	}
+    @Override
+    public Optional<Customer> findById(long customerId) {
+        // TODO Auto-generated method stub
+        System.out.println("Finding Id by Customer Id");
+        return this.customerRepository.findById(customerId);
+    }
 
-	@Override
-	public void deleteCustomer(long customerId) {
-		System.out.println("Deleting customer based on Id");
-		this.customerRepository.deleteById(customerId);
-	}
+    @Override
+    public void deleteCustomer(long customerId) {
+        System.out.println("Deleting customer based on Id");
+        this.customerRepository.deleteById(customerId);
+    }
 }

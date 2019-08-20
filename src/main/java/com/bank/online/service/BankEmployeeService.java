@@ -17,4 +17,7 @@ public interface BankEmployeeService {
     Optional<Customer> findById(long customerId);
 
     void deleteCustomer(long customerId);
+    
+	//Optional<BankEmployee> findByEmployeeIdAndEmployeePassword(long id,String pwd);
+
 }

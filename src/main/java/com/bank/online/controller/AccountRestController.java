@@ -2,17 +2,24 @@ package com.bank.online.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.online.model.Account;
+import com.bank.online.model.Customer;
 import com.bank.online.service.AccountService;
 
 @RestController
-@RequestMapping("/data")
+@CrossOrigin
+@RequestMapping("/api/v1")
 public class AccountRestController {
 	
 	@Autowired
@@ -29,5 +36,9 @@ public class AccountRestController {
         return this.accountService.findById(id);
     }
     
+    @PostMapping(value = "/accounts")
+    public void saveAccount(@Valid @RequestBody Account account){
+	 this.accountService.saveAccount(account);
+    }
     
 }
