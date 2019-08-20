@@ -34,7 +34,7 @@ public class Transaction {
     
 	private long transactionAmount;
     
-	private long availableBalance;
+	private long updatedBalance;
     
 	private long fromAccountId;
    
@@ -91,13 +91,7 @@ public class Transaction {
 		this.transactionAmount = transactionAmount;
 	}
 
-	public long getAvailableBalance() {
-		return availableBalance;
-	}
-
-	public void setAvailableBalance(long availableBalance) {
-		this.availableBalance = availableBalance;
-	}
+	
 
 	public long getFromAccountId() {
 		return fromAccountId;
@@ -136,7 +130,7 @@ public class Transaction {
 		final int prime = 31;
 		int result = 1;
 		//result = prime * result + ((account == null) ? 0 : account.hashCode());
-		result = prime * result + (int) (availableBalance ^ (availableBalance >>> 32));
+		result = prime * result + (int) (updatedBalance ^ (updatedBalance >>> 32));
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + (int) (fromAccountId ^ (fromAccountId >>> 32));
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -162,7 +156,7 @@ public class Transaction {
 				return false;
 		} else if (!account.equals(other.account))
 			return false;
-		if (availableBalance != other.availableBalance)
+		if (updatedBalance != other.updatedBalance)
 			return false;
 		if (date == null) {
 			if (other.date != null)
@@ -196,8 +190,16 @@ public class Transaction {
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", date=" + date + ", timeStamp=" + timeStamp
 				+ ", typeOfTransaction=" + typeOfTransaction + ", transactionAmount=" + transactionAmount
-				+ ", availableBalance=" + availableBalance + ", fromAccountId=" + fromAccountId + ", toAccountId="
+				+ ", availableBalance=" + updatedBalance + ", fromAccountId=" + fromAccountId + ", toAccountId="
 				+ toAccountId + ", status=" + status + ", account=" + account + "]";
+	}
+
+	public long getUpdatedBalance() {
+		return updatedBalance;
+	}
+
+	public void setUpdatedBalance(long updatedBalance) {
+		this.updatedBalance = updatedBalance;
 	}
     
 

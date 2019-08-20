@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -30,6 +32,8 @@ public class Customer {
 	private String customerName;
 	private String password;
 	private long phoneNo;
+	
+	
 	private String dob;
 	private long aadharNo;
 	private String pancardNo;
@@ -96,16 +100,16 @@ public class Customer {
 	}
 
 
+	
+
+
+	
 	public String getDob() {
 		return dob;
 	}
-
-
 	public void setDob(String dob) {
 		this.dob = dob;
 	}
-
-
 	public long getAadharNo() {
 		return aadharNo;
 	}
@@ -144,31 +148,13 @@ public class Customer {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	public Customer(long customerId, String customerName, String password, long phoneNo, String dob, long aadharNo,
-			String pancardNo, String emailId, String address) {
-		
-		super();
-		System.out.println("Entered Customer Constructor with Parameters");
-		this.customerId = customerId;
-		this.customerName = customerName;
-		this.password = password;
-		this.phoneNo = phoneNo;
-		this.dob = dob;
-		this.aadharNo = aadharNo;
-		this.pancardNo = pancardNo;
-		this.emailId = emailId;
-		this.address = address;
-	}
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + (int) (aadharNo ^ (aadharNo >>> 32));
 		result = prime * result + ((address == null) ? 0 : address.hashCode());
-		//result = prime * result + ((bankAccountSet == null) ? 0 : bankAccountSet.hashCode());
+		result = prime * result + ((bankAccountSet == null) ? 0 : bankAccountSet.hashCode());
 		result = prime * result + (int) (customerId ^ (customerId >>> 32));
 		result = prime * result + ((customerName == null) ? 0 : customerName.hashCode());
 		result = prime * result + ((dob == null) ? 0 : dob.hashCode());
@@ -178,8 +164,6 @@ public class Customer {
 		result = prime * result + (int) (phoneNo ^ (phoneNo >>> 32));
 		return result;
 	}
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -232,14 +216,15 @@ public class Customer {
 			return false;
 		return true;
 	}
-
-
 	@Override
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", password=" + password
 				+ ", phoneNo=" + phoneNo + ", dob=" + dob + ", aadharNo=" + aadharNo + ", pancardNo=" + pancardNo
 				+ ", emailId=" + emailId + ", address=" + address + ", bankAccountSet=" + bankAccountSet + "]";
 	}
+	
+
+	
 
 	
 	

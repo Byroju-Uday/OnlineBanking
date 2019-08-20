@@ -35,7 +35,7 @@
 				  </tr>
 				  <tr>
 				    <td>DOB</td>
-				    <td><input type="text" name="dob" placeholder="please enter the DOB"/></td>
+				    <td><input type="date" name="dob" placeholder="please enter the DOB"/></td>
 				  </tr>
 				  <tr>
 				    <td>Aadhar No</td>

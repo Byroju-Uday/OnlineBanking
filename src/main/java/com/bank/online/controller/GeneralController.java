@@ -1,6 +1,9 @@
 package com.bank.online.controller;
 
 import java.awt.Window;
+import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -72,12 +75,16 @@ public class GeneralController {
 	}
 	
 	@PostMapping(value = "/registerCustomer")
-	public String registerCustomer(Model model,HttpServletRequest req) {
+	public String registerCustomer(Model model,HttpServletRequest req) throws ParseException {
 		//int id = Integer.parseInt(req.getParameter("id"));
 		String customerName = req.getParameter("customerName");
 		String password = req.getParameter("password");
 		long phoneNo = Long.parseLong(req.getParameter("phoneNo"));
-		String dob = req.getParameter("dob");
+		String dob = req.getParameter("dob").toString();
+		System.out.println("the date of birth is "+dob);
+//		SimpleDateFormat sdf1 = new SimpleDateFormat("dd-MM-yyyy");
+//		java.util.Date date = sdf1.parse(dob); // Returns a Date format object with the pattern
+//        java.sql.Date sqlStartDate = new java.sql.Date(date.getTime());
 		long aadharNo = Long.parseLong(req.getParameter("aadharNo"));
 		String pancardNo = req.getParameter("pancardNo");
 		String emailId= req.getParameter("emailId");
@@ -121,7 +128,7 @@ public class GeneralController {
 		if(transactionAmount <= from_user_balance)
 		{	long millis=System.currentTimeMillis();  
 			java.util.Date date=new java.util.Date(millis); 
-			transactionFrom.setAvailableBalance(from_user_balance-transactionAmount);
+			transactionFrom.setUpdatedBalance(from_user_balance-transactionAmount);
 			transactionFrom.setDate(date);
 			transactionFrom.setTimeStamp(millis);
 			transactionFrom.setTypeOfTransaction(typeOfTransaction);
@@ -131,10 +138,10 @@ public class GeneralController {
 			transactionFrom.setAccount(fromAccount);
 			
 			fromAccount.addTransaction(transactionFrom);
-			fromAccount.setAccountBalance(transactionFrom.getAvailableBalance());
+			fromAccount.setAccountBalance(transactionFrom.getUpdatedBalance());
 			toAccount.setAccountBalance(toAccount.getAccountBalance()+transactionAmount);
 			
-			transactionTo.setAvailableBalance(toAccount.getAccountBalance());
+			transactionTo.setUpdatedBalance(toAccount.getAccountBalance());
 			transactionTo.setDate(date);
 			transactionTo.setTimeStamp(millis);
 			transactionTo.setTypeOfTransaction("credit");

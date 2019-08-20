@@ -56,7 +56,7 @@ public class TransactionController {
 		}
 		System.out.println("Inside Transaction");
 		transaction.setTypeOfTransaction(typeoftransaction);
-		transaction.setAvailableBalance(availablebalance);
+		transaction.setUpdatedBalance(availablebalance);
 		transaction.setFromAccountId(fromcustomerid);
 		transaction.setToAccountId(tocustomerid);
 		transaction.setStatus(status);
