@@ -35,7 +35,7 @@ public class BankEmployeeRestController {
 		return "onlineBankLanding";
 	}
 	 
-	 @GetMapping(value = "/addCustomers")
+	 @GetMapping(value = "/getAllCustomers")
 	    public List<Customer> listAll(){
 	        System.out.println("Inside the list all method....");
 	        return this.bankEmployeeService.listAll();
@@ -47,9 +47,10 @@ public class BankEmployeeRestController {
 //	        return this.employeeService.findByEmployeeIdAndEmployeePassword(id, pwd);
 //	    }
 	 
-	 @PostMapping(value = "/addCustomers")
-	    public void saveCustomers(@Valid @RequestBody Customer customer){
-		 this.bankEmployeeService.saveCustomer(customer);
+	 @PostMapping(value = "/")
+	 
+	    public Customer saveCustomers(@Valid @RequestBody Customer customer){
+		 return this.bankEmployeeService.saveCustomer(customer);
 	    }
 	 
 	 @PostMapping(value = "/deleteCustomers")

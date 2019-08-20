@@ -63,4 +63,14 @@ public class Account {
 	public void setAccountBalance(long accountBalance) {
 		this.accountBalance = accountBalance;
 	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+	
+	
 }

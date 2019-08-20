@@ -19,7 +19,7 @@ import com.bank.online.model.Customer;
 import com.bank.online.service.CustomerService;
 
 @RestController 
-@CrossOrigin
+@CrossOrigin(origins= "http://localhost:4200")
 @RequestMapping("/customer")
 public class CustomerRestController {
 	

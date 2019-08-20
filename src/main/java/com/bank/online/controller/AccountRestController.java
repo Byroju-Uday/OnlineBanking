@@ -19,7 +19,7 @@ import com.bank.online.service.AccountService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/vi")
+@RequestMapping("/api/v1")
 public class AccountRestController {
 	
 	@Autowired
@@ -36,7 +36,7 @@ public class AccountRestController {
         return this.accountService.findById(id);
     }
     
-    @PostMapping(value = "/addAccount")
+    @PostMapping(value = "/accounts")
     public void saveAccount(@Valid @RequestBody Account account){
 	 this.accountService.saveAccount(account);
     }
