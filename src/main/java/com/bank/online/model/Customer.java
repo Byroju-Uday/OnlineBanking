@@ -27,7 +27,7 @@ public class Customer {
 		System.out.println("Entered Customer Constructor withOut Parameters");
 	}
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	//@GeneratedValue(strategy = GenerationType.AUTO)
 	private long customerId;
 	private String customerName;
 	private String password;
@@ -97,11 +97,6 @@ public class Customer {
 	public void setPhoneNo(long phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-
-
-	
-
-
 	
 	public String getDob() {
 		return dob;

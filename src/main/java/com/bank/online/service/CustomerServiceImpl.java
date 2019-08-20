@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	@Transactional
-	public Customer findById(long customerId) {
+	public Customer listById(long customerId) {
 		// TODO Auto-generated method stub
 		return this.customerRepository.findById(customerId).get();
 	}
@@ -52,14 +52,6 @@ public class CustomerServiceImpl implements CustomerService {
 	@Transactional
 	public void deleteCustomer(long customerId) {
 		// TODO Auto-generated method stub
-		
 		this.customerRepository.deleteById(customerId);
-		
-	}
-
-	@Override
-	public Optional<Customer> listById(long customerId) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 }

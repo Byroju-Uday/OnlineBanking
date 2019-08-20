@@ -26,8 +26,8 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@GetMapping(value = "/profile/{id}") //produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public Optional<Customer> listById(@PathVariable("id") long id)
+	@GetMapping(value = "profile/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public Customer findById(@PathVariable("id") long id)
 	{
 		return this.customerService.listById(id);
 	}
