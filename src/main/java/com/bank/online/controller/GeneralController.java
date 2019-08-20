@@ -115,23 +115,36 @@ public class GeneralController {
 		long to_user_balance = toAccount.getAccountBalance();
 		
 		
-		Transaction transaction = new Transaction();
+		Transaction transactionFrom = new Transaction();
+		Transaction transactionTo = new Transaction();
 		
 		if(transactionAmount <= from_user_balance)
 		{	long millis=System.currentTimeMillis();  
 			java.util.Date date=new java.util.Date(millis); 
-			transaction.setAvailableBalance(from_user_balance-transactionAmount);
-		    transaction.setDate(date);
-		    transaction.setTimeStamp(millis);
-		    transaction.setTypeOfTransaction(typeOfTransaction);
-		    transaction.setTransactionAmount(transactionAmount);
-		    transaction.setFromAccountId(fromAccountId);
-		    transaction.setToAccountId(toAccountId);
-			transaction.setAccount(fromAccount);
+			transactionFrom.setAvailableBalance(from_user_balance-transactionAmount);
+			transactionFrom.setDate(date);
+			transactionFrom.setTimeStamp(millis);
+			transactionFrom.setTypeOfTransaction(typeOfTransaction);
+			transactionFrom.setTransactionAmount(transactionAmount);
+			transactionFrom.setFromAccountId(fromAccountId);
+			transactionFrom.setToAccountId(toAccountId);
+			transactionFrom.setAccount(fromAccount);
 			
-			fromAccount.addTransaction(transaction);
-			fromAccount.setAccountBalance(transaction.getAvailableBalance());
+			fromAccount.addTransaction(transactionFrom);
+			fromAccount.setAccountBalance(transactionFrom.getAvailableBalance());
 			toAccount.setAccountBalance(toAccount.getAccountBalance()+transactionAmount);
+			
+			transactionTo.setAvailableBalance(toAccount.getAccountBalance());
+			transactionTo.setDate(date);
+			transactionTo.setTimeStamp(millis);
+			transactionTo.setTypeOfTransaction("credit");
+			transactionTo.setTransactionAmount(transactionAmount);
+			transactionTo.setFromAccountId(fromAccountId);
+			transactionTo.setToAccountId(toAccountId);
+			transactionTo.setAccount(toAccount);
+			toAccount.addTransaction(transactionTo);
+			
+			
 			this.accountService.saveAccount(fromAccount);
 			this.accountService.saveAccount(toAccount);
 			System.out.println("Transaction has been created");
