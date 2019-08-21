@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Data;
 
 @Entity
 @Table
@@ -60,6 +59,46 @@ public class Account {
 
 	public void setTransactionSet(Set<Transaction> transactionSet) {
 		this.transactionSet = transactionSet;
+	}
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	public String getAccountType() {
+		return accountType;
+	}
+	
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+	
+	public long getAccountNumber() {
+		return accountNumber;
+	}
+	
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+	
+	public long getAccountBalance() {
+		return accountBalance;
+	}
+	
+	public void setAccountBalance(long accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 	
 	@Override
@@ -108,45 +147,4 @@ public class Account {
 		return true;
 	}
 
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	public String getAccountType() {
-		return accountType;
-	}
-	
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
-	
-	public long getAccountNumber() {
-		return accountNumber;
-	}
-	
-	public void setAccountNumber(long accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-	
-	public long getAccountBalance() {
-		return accountBalance;
-	}
-	
-	public void setAccountBalance(long accountBalance) {
-		this.accountBalance = accountBalance;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	
-	
 }
