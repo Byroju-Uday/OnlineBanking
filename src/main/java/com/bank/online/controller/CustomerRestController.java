@@ -39,6 +39,7 @@ public class CustomerRestController {
 		return this.customerService.listById(id);
 	}
 	
+	
 	@PostMapping(value="/customerLoginValidation")
 	public boolean customerLoginValidaiton(@Valid @RequestBody CustomerCredentials customerCredentials) {
 		
