@@ -45,6 +45,41 @@ public class BankEmployeeServiceImpl implements BankEmployeeService{
 
     @Override
     @Transactional
+    public Customer updateCustomer(long customerId, Customer customer) {
+    	Customer customerresult = customerRepository.findById(customerId).get();
+    	System.out.println(customerresult);
+    	System.out.println(customer);
+    	customerresult.setCustomerId(customerId);
+    	if(customer.getCustomerName() != null) {
+    	customerresult.setCustomerName(customer.getCustomerName());
+    	}
+    	if(customer.getAadharNo() != customerresult.getAadharNo()) {
+        	customerresult.setAadharNo(customer.getAadharNo());
+        }
+    	if(customer.getPancardNo() != null) {
+    		customerresult.setPancardNo(customer.getPancardNo());
+        }
+    	if(customer.getAddress() != null) {
+    		customerresult.setAddress(customer.getAddress());
+        }
+    	if(customer.getPassword() != null) {
+    		customerresult.setPassword(customer.getPassword());
+        } 
+    	if(customer.getPhoneNo() != customerresult.getPhoneNo()) {
+    		customerresult.setPhoneNo(customer.getPhoneNo());
+        }
+    	if(customer.getEmailId() != null) {
+    		customerresult.setEmailId(customer.getEmailId());
+        }
+    	if(customer.getDob() != null) {
+    		customerresult.setDob(customer.getDob());
+        }
+        System.out.println("The Records"+customerresult);
+        return customerRepository.save(customerresult);
+    }
+    
+    @Override
+    @Transactional
     public List<Customer> listAll() {
         System.out.println("Listing all the records");
         return this.customerRepository.findAll();
@@ -62,6 +97,6 @@ public class BankEmployeeServiceImpl implements BankEmployeeService{
     @Transactional
     public void deleteCustomer(long customerId) {
         System.out.println("Deleting customer based on Id");
-        this.customerRepository.deleteById(customerId);;
+        this.customerRepository.deleteById(customerId);
     }
 }
