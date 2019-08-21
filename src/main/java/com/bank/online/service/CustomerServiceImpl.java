@@ -3,12 +3,14 @@ package com.bank.online.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bank.online.model.Account;
 import com.bank.online.model.Customer;
 import com.bank.online.repository.CustomerRepository;
 
@@ -53,5 +55,13 @@ public class CustomerServiceImpl implements CustomerService {
 	public void deleteCustomer(long customerId) {
 		// TODO Auto-generated method stub
 		this.customerRepository.deleteById(customerId);
+	}
+
+	@Override
+	public Set<Account> listAccounts(long customerId) {
+		// TODO Auto-generated method stub
+		Customer customer = listById(customerId);
+		
+		return customer.getBankAccountSet();
 	}
 }

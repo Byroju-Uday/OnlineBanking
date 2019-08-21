@@ -2,6 +2,7 @@ package com.bank.online.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.online.model.Account;
 import com.bank.online.model.Customer;
 import com.bank.online.model.CustomerCredentials;
 import com.bank.online.model.CustomerValidation;
@@ -58,6 +60,12 @@ public class CustomerRestController {
 	public void checking(@Valid @RequestBody CustomerCredentials customerCredentials)
 	{
 		System.out.println("came inside the checking function");
+	}
+	
+	@GetMapping(value = "accounts/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public Set<Account> listAccounts(@PathVariable("id") long id)
+	{
+		return this.customerService.listAccounts(id);
 	}
 	
 }
