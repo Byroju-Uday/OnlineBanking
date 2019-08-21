@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bank.online.model.Customer;
+import com.bank.online.model.CustomerCredentials;
+import com.bank.online.model.CustomerValidation;
 import com.bank.online.service.CustomerService;
 
+
+@CrossOrigin
 @RestController 
-@CrossOrigin(origins= "http://localhost:4200")
 @RequestMapping("/customer")
 public class CustomerRestController {
 	
@@ -27,8 +30,32 @@ public class CustomerRestController {
 	private CustomerService customerService;
 	
 	@GetMapping(value = "/profile/{id}") //produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public Optional<Customer> listById(@PathVariable("id") long id)
+	public Customer listById(@PathVariable("id") long id)
 	{
-		return this.customerService.listById(id);
+		return this.customerService.findById(id);
+	}
+	
+	@PostMapping(value="/customerLoginValidation")
+	public boolean customerLoginValidaiton(@Valid @RequestBody CustomerCredentials customerCredentials) {
+		
+		System.out.println("came inside the customerLoginValidation function of CustomerRestController");
+		Customer customer = customerService.findById(customerCredentials.customerId);
+		if(customer!=null)
+		{	
+			System.out.println("Customer is found with that ID");
+			if(customer.getPassword().equals(customerCredentials.password))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+		
+	}
+	
+	@PostMapping(value="/checking")
+	public void checking(@Valid @RequestBody CustomerCredentials customerCredentials)
+	{
+		System.out.println("came inside the checking function");
 	}
 }
