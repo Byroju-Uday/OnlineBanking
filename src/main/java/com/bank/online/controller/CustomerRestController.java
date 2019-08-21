@@ -29,17 +29,18 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@GetMapping(value = "/profile/{id}") //produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
-	public Customer listById(@PathVariable("id") long id)
+
+	@GetMapping(value = "profile/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	public Customer findById(@PathVariable("id") long id)
 	{
-		return this.customerService.findById(id);
+		return this.customerService.listById(id);
 	}
 	
 	@PostMapping(value="/customerLoginValidation")
 	public boolean customerLoginValidaiton(@Valid @RequestBody CustomerCredentials customerCredentials) {
 		
 		System.out.println("came inside the customerLoginValidation function of CustomerRestController");
-		Customer customer = customerService.findById(customerCredentials.customerId);
+		Customer customer = customerService.listById(customerCredentials.customerId);
 		if(customer!=null)
 		{	
 			System.out.println("Customer is found with that ID");
@@ -58,4 +59,5 @@ public class CustomerRestController {
 	{
 		System.out.println("came inside the checking function");
 	}
+	
 }

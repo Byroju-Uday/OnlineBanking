@@ -58,7 +58,7 @@ public class GeneralController {
 		account.setAccountBalance(accountBalance);
 		account.setAccountType(accountType);
 		
-		Customer customer = customerService.findById(customerId);
+		Customer customer = customerService.listById(customerId);
 		account.setCustomer(customer);
 		customer.addBankAccount(account);
 		this.customerService.saveCustomer(customer);
