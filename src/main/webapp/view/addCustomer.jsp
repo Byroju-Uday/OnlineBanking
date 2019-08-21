@@ -19,6 +19,11 @@
 			Please add the Customer
 			<form action="/general/registerCustomer" method="post">
 				<table style="width:50%">
+					<tr>
+				    <td>Customer Id</th>
+				    <td><input type="text" name="customerId" placeholder="please enter the CustomerId"/></th> 
+				    
+				  </tr>
 				  <tr>
 				    <td>Customer Name</th>
 				    <td><input type="text" name="customerName" placeholder="please enter the name"/></th> 

@@ -2,6 +2,7 @@ package com.bank.online.controller;
 
 import java.awt.Window;
 import java.util.*;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -77,6 +78,7 @@ public class GeneralController {
 	@PostMapping(value = "/registerCustomer")
 	public String registerCustomer(Model model,HttpServletRequest req) throws ParseException {
 		//int id = Integer.parseInt(req.getParameter("id"));
+		long customerId = Long.parseLong(req.getParameter("customerId"));
 		String customerName = req.getParameter("customerName");
 		String password = req.getParameter("password");
 		long phoneNo = Long.parseLong(req.getParameter("phoneNo"));
@@ -90,6 +92,7 @@ public class GeneralController {
 		String emailId= req.getParameter("emailId");
 		String address= req.getParameter("address");
 		Customer customer = new Customer();
+		customer.setCustomerId(customerId);
 		customer.setCustomerName(customerName);
 		customer.setPassword(password);
 		customer.setPhoneNo(phoneNo);
@@ -109,7 +112,7 @@ public class GeneralController {
 		return "addTransaction";
 	}
 	@PostMapping(value = "/registerTransaction")
-	public String registerTransaction(Model model,HttpServletRequest req) {
+	public String registerTransaction(Model model,HttpServletRequest req) throws ParseException {
 		
 		String typeOfTransaction = req.getParameter("typeOfTransaction");
 		long transactionAmount = Long.parseLong(req.getParameter("transactionAmount"));
@@ -127,9 +130,16 @@ public class GeneralController {
 		
 		if(transactionAmount <= from_user_balance)
 		{	long millis=System.currentTimeMillis();  
-			java.util.Date date=new java.util.Date(millis); 
+		 //Timestamp stamp = new Timestamp(System.currentTimeMillis());
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+					Date date1= new Date();
+			String date_string = format.format(date1);
+			System.out.println("the date of the date_string is "+ date_string);
+			Date date_final = format.parse(date_string);
+			
+			//java.util.Date date=new java.util.Date(millis); 
 			transactionFrom.setUpdatedBalance(from_user_balance-transactionAmount);
-			transactionFrom.setDate(date);
+			transactionFrom.setDate(date1);
 			transactionFrom.setTimeStamp(millis);
 			transactionFrom.setTypeOfTransaction(typeOfTransaction);
 			transactionFrom.setTransactionAmount(transactionAmount);
@@ -142,7 +152,7 @@ public class GeneralController {
 			toAccount.setAccountBalance(toAccount.getAccountBalance()+transactionAmount);
 			
 			transactionTo.setUpdatedBalance(toAccount.getAccountBalance());
-			transactionTo.setDate(date);
+			transactionTo.setDate(date1);
 			transactionTo.setTimeStamp(millis);
 			transactionTo.setTypeOfTransaction("credit");
 			transactionTo.setTransactionAmount(transactionAmount);
