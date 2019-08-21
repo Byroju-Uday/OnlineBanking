@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bank.online.model.Account;
 import com.bank.online.model.Customer;
 import com.bank.online.model.CustomerCredentials;
 import com.bank.online.model.CustomerValidation;
@@ -29,10 +31,11 @@ public class CustomerRestController {
 	@Autowired
 	private CustomerService customerService;
 	
-
-	@GetMapping(value = "profile/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	
+	@GetMapping(value = "profile/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public Customer findById(@PathVariable("id") long id)
 	{
+		System.out.println("Inside Get method of FindById");
 		return this.customerService.listById(id);
 	}
 	
@@ -60,4 +63,9 @@ public class CustomerRestController {
 		System.out.println("came inside the checking function");
 	}
 	
+	@GetMapping(value = "/customers")
+    public List<Customer> listAll(){
+        System.out.println("Inside the list all method....");
+        return this.customerService.listAll();
+    }
 }
