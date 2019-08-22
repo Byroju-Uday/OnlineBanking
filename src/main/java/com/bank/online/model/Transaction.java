@@ -26,7 +26,7 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long transactionId;
 	
-	private Date date;
+	private java.sql.Date date;
 	
 	private long timeStamp;
    
@@ -63,7 +63,7 @@ public class Transaction {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(java.sql.Date date) {
 		this.date = date;
 	}
 

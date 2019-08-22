@@ -132,14 +132,17 @@ public class GeneralController {
 		{	long millis=System.currentTimeMillis();  
 		 //Timestamp stamp = new Timestamp(System.currentTimeMillis());
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			TimeZone timeZone=TimeZone.getTimeZone("IST");
+			format.setTimeZone(timeZone);
 					Date date1= new Date();
 			String date_string = format.format(date1);
 			System.out.println("the date of the date_string is "+ date_string);
 			Date date_final = format.parse(date_string);
+			java.sql.Date date_sql = new java.sql.Date(System.currentTimeMillis());
 			
 			//java.util.Date date=new java.util.Date(millis); 
 			transactionFrom.setUpdatedBalance(from_user_balance-transactionAmount);
-			transactionFrom.setDate(date1);
+			transactionFrom.setDate(date_sql);
 			transactionFrom.setTimeStamp(millis);
 			transactionFrom.setTypeOfTransaction(typeOfTransaction);
 			transactionFrom.setTransactionAmount(transactionAmount);
@@ -152,7 +155,7 @@ public class GeneralController {
 			toAccount.setAccountBalance(toAccount.getAccountBalance()+transactionAmount);
 			
 			transactionTo.setUpdatedBalance(toAccount.getAccountBalance());
-			transactionTo.setDate(date1);
+			transactionTo.setDate(date_sql);
 			transactionTo.setTimeStamp(millis);
 			transactionTo.setTypeOfTransaction("credit");
 			transactionTo.setTransactionAmount(transactionAmount);

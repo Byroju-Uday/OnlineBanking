@@ -62,8 +62,9 @@ public class TransactionController {
 		transaction.setStatus(status);
 		transaction.setTransactionAmount(transactionamount);
 		long millis=System.currentTimeMillis();  
-		java.util.Date date=new java.util.Date(millis);   
-	    transaction.setDate(date);
+		java.util.Date date=new java.util.Date(millis); 
+		java.sql.Date date_sql = new java.sql.Date(System.currentTimeMillis());
+	    transaction.setDate(date_sql);
 		System.out.println(transaction);
 		this.transactionService.saveTransaction(transaction);
 		System.out.println("Records Saved Succesfully");
