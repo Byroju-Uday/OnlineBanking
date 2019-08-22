@@ -3,14 +3,17 @@ package com.bank.online.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityResult;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,12 +50,19 @@ public class BankEmployeeRestController {
 //	    }
 	 
 	 @PostMapping(value = "/")
-	 
 	    public Customer saveCustomers(@Valid @RequestBody Customer customer){
 		 return this.bankEmployeeService.saveCustomer(customer);
 	    }
 	 
-	 @GetMapping(value = "/delete/{id}")
+	 
+	  @PutMapping(value = "profile/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+		public Customer updateCustomer(@PathVariable("id") long customerId, @Valid @RequestBody Customer customer)
+		{
+			System.out.println("Inside Put method of UpdateCustomer");
+			return this.bankEmployeeService.updateCustomer(customerId, customer);
+		}
+	 
+	  @GetMapping(value = "/delete/{id}")
 	 	public void deleteCustomers(@PathVariable long id) {
 		 this.bankEmployeeService.deleteCustomer(id);
 	 }
