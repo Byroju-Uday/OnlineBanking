@@ -40,6 +40,11 @@ public class AccountRestController {
 	public Account findEmployeeById(@PathVariable("id") long id){
 		return this.accountService.findById(id);
 	}
+	
+	@GetMapping("/accounts/delete/{id}")
+	public void deleteAccount(@PathVariable("id") long id){
+		this.accountService.deleteAccount(id);
+	}
 
 	@PostMapping(value = "/accounts")
 	public void saveAccount(@Valid @RequestBody AccountDetails accountDetails){

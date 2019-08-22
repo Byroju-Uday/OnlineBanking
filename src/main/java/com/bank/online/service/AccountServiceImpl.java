@@ -52,7 +52,7 @@ public class AccountServiceImpl implements AccountService{
 	@Transactional
 	public void deleteAccount(long accountId) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("Deleting account based on Id");
 		this.accountRepository.deleteById(accountId);
 		
 	}
