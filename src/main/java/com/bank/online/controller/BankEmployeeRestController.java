@@ -52,7 +52,7 @@ public class BankEmployeeRestController {
 		 return this.bankEmployeeService.saveCustomer(customer);
 	    }
 	 
-	 @GetMapping(value = "/deleteCustomers/{id}")
+	 @GetMapping(value = "/delete/{id}")
 	 	public void deleteCustomers(@PathVariable long id) {
 		 this.bankEmployeeService.deleteCustomer(id);
 	 }
