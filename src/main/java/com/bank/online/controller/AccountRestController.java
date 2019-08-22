@@ -1,5 +1,6 @@
 package com.bank.online.controller;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -49,6 +50,9 @@ public class AccountRestController {
 	@PostMapping(value = "/accounts")
 	public void saveAccount(@Valid @RequestBody AccountDetails accountDetails){
 		Account account=new Account();
+		java.sql.Date date = new java.sql.Date(System.currentTimeMillis());
+		account.setLastTransactionDate(date.toString());
+		account.setDateTransactionsCount(0);
 		account.setAccountBalance(accountDetails.accountBalance);
 		account.setAccountNumber(accountDetails.accountNumber);
 		account.setAccountType(accountDetails.accountType);

@@ -64,7 +64,7 @@ public class TransactionController {
 		long millis=System.currentTimeMillis();  
 		java.util.Date date=new java.util.Date(millis); 
 		java.sql.Date date_sql = new java.sql.Date(System.currentTimeMillis());
-	    transaction.setDate(date_sql);
+	    transaction.setDate(date_sql.toString());
 		System.out.println(transaction);
 		this.transactionService.saveTransaction(transaction);
 		System.out.println("Records Saved Succesfully");

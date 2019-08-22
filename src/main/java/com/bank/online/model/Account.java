@@ -35,6 +35,26 @@ public class Account {
 	@Column
 	private long accountBalance;
 	
+	@Column
+	private String lastTransactionDate;
+	
+	@Column
+	private long dateTransactionsCount;
+	
+	
+	public String getLastTransactionDate() {
+		return lastTransactionDate;
+	}
+	public void setLastTransactionDate(String lastTransactionDate) {
+		this.lastTransactionDate = lastTransactionDate;
+	}
+	public long getDateTransactionsCount() {
+		return dateTransactionsCount;
+	}
+	public void setDateTransactionsCount(long dateTransactionsCount) {
+		this.dateTransactionsCount = dateTransactionsCount;
+	}
+
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "customerId" , nullable = false)
@@ -108,12 +128,11 @@ public class Account {
 		result = prime * result + (int) (accountBalance ^ (accountBalance >>> 32));
 		result = prime * result + (int) (accountNumber ^ (accountNumber >>> 32));
 		result = prime * result + ((accountType == null) ? 0 : accountType.hashCode());
-		//result = prime * result + ((customer == null) ? 0 : customer.hashCode());
+		result = prime * result + (int) (dateTransactionsCount ^ (dateTransactionsCount >>> 32));
 		result = prime * result + (int) (id ^ (id >>> 32));
-		//result = prime * result + ((transactionSet == null) ? 0 : transactionSet.hashCode());
+		result = prime * result + ((lastTransactionDate == null) ? 0 : lastTransactionDate.hashCode());
 		return result;
 	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -132,19 +151,18 @@ public class Account {
 				return false;
 		} else if (!accountType.equals(other.accountType))
 			return false;
-		if (customer == null) {
-			if (other.customer != null)
-				return false;
-		} else if (!customer.equals(other.customer))
+		if (dateTransactionsCount != other.dateTransactionsCount)
 			return false;
 		if (id != other.id)
 			return false;
-		if (transactionSet == null) {
-			if (other.transactionSet != null)
+		if (lastTransactionDate == null) {
+			if (other.lastTransactionDate != null)
 				return false;
-		} else if (!transactionSet.equals(other.transactionSet))
+		} else if (!lastTransactionDate.equals(other.lastTransactionDate))
 			return false;
 		return true;
 	}
+
+	
 
 }
