@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.Data;
 
 @Entity
 @Table
@@ -24,17 +25,14 @@ public class Account {
     
 	@Id
 	@GeneratedValue()
-	private long id;
+	@Column
+	private long accountNumber;
 	
 	@Column
 	private String accountType;
 	
 	@Column
-	private long accountNumber;
-	
-	@Column
 	private long accountBalance;
-	
 	@Column
 	private String lastTransactionDate;
 	
@@ -54,7 +52,7 @@ public class Account {
 	public void setDateTransactionsCount(long dateTransactionsCount) {
 		this.dateTransactionsCount = dateTransactionsCount;
 	}
-
+	
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "customerId" , nullable = false)
@@ -81,14 +79,35 @@ public class Account {
 		this.transactionSet = transactionSet;
 	}
 	
-	public long getId() {
-		return id;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (accountBalance ^ (accountBalance >>> 32));
+		result = prime * result + (int) (accountNumber ^ (accountNumber >>> 32));
+		result = prime * result + ((accountType == null) ? 0 : accountType.hashCode());
+		return result;
 	}
-	
-	public void setId(long id) {
-		this.id = id;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Account other = (Account) obj;
+		if (accountBalance != other.accountBalance)
+			return false;
+		if (accountNumber != other.accountNumber)
+			return false;
+		if (accountType == null) {
+			if (other.accountType != null)
+				return false;
+		} else if (!accountType.equals(other.accountType))
+			return false;
+		return true;
 	}
-	
 	public String getAccountType() {
 		return accountType;
 	}
@@ -120,49 +139,4 @@ public class Account {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + (int) (accountBalance ^ (accountBalance >>> 32));
-		result = prime * result + (int) (accountNumber ^ (accountNumber >>> 32));
-		result = prime * result + ((accountType == null) ? 0 : accountType.hashCode());
-		result = prime * result + (int) (dateTransactionsCount ^ (dateTransactionsCount >>> 32));
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((lastTransactionDate == null) ? 0 : lastTransactionDate.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Account other = (Account) obj;
-		if (accountBalance != other.accountBalance)
-			return false;
-		if (accountNumber != other.accountNumber)
-			return false;
-		if (accountType == null) {
-			if (other.accountType != null)
-				return false;
-		} else if (!accountType.equals(other.accountType))
-			return false;
-		if (dateTransactionsCount != other.dateTransactionsCount)
-			return false;
-		if (id != other.id)
-			return false;
-		if (lastTransactionDate == null) {
-			if (other.lastTransactionDate != null)
-				return false;
-		} else if (!lastTransactionDate.equals(other.lastTransactionDate))
-			return false;
-		return true;
-	}
-
-	
-
 }
