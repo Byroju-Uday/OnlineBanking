@@ -33,7 +33,7 @@ public class CustomerRestController {
 	private CustomerService customerService;
 	
 	
-	@GetMapping(value = "profile/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/profile/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public Customer findById(@PathVariable("id") long id)
 	{
 		System.out.println("Inside Get method of FindById");

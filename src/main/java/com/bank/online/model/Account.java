@@ -17,29 +17,28 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.Data;
-
 @Entity
 @Table
 public class Account {
-    
+
 	@Id
 	@GeneratedValue()
 	@Column
 	private long accountNumber;
-	
+
 	@Column
 	private String accountType;
-	
+
 	@Column
 	private long accountBalance;
+
 	@Column
 	private String lastTransactionDate;
-	
+
 	@Column
 	private long dateTransactionsCount;
-	
-	
+
+
 	public String getLastTransactionDate() {
 		return lastTransactionDate;
 	}
@@ -52,25 +51,25 @@ public class Account {
 	public void setDateTransactionsCount(long dateTransactionsCount) {
 		this.dateTransactionsCount = dateTransactionsCount;
 	}
-	
+
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "customerId" , nullable = false)
 	private Customer customer;
-	
+
 	public Account(){
-		
+
 	}
-	
+
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonManagedReference
-    private Set<Transaction> transactionSet = new HashSet<>();
-	
+	private Set<Transaction> transactionSet = new HashSet<>();
+
 	public void addTransaction(Transaction transaction)
-    {
-    	this.transactionSet.add(transaction);
-    	
-    }
+	{
+		this.transactionSet.add(transaction);
+
+	}
 	public Set<Transaction> getTransactionSet() {
 		return transactionSet;
 	}
@@ -78,7 +77,7 @@ public class Account {
 	public void setTransactionSet(Set<Transaction> transactionSet) {
 		this.transactionSet = transactionSet;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -111,23 +110,23 @@ public class Account {
 	public String getAccountType() {
 		return accountType;
 	}
-	
+
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
-	
+
 	public long getAccountNumber() {
 		return accountNumber;
 	}
-	
+
 	public void setAccountNumber(long accountNumber) {
 		this.accountNumber = accountNumber;
 	}
-	
+
 	public long getAccountBalance() {
 		return accountBalance;
 	}
-	
+
 	public void setAccountBalance(long accountBalance) {
 		this.accountBalance = accountBalance;
 	}
