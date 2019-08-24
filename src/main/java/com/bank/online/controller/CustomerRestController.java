@@ -65,7 +65,7 @@ public class CustomerRestController {
 		System.out.println("came inside the checking function");
 	}
 	
-	@GetMapping(value = "accounts/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/accounts/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public Set<Account> listAccounts(@PathVariable("id") long id)
 	{
 		return this.customerService.listAccounts(id);
