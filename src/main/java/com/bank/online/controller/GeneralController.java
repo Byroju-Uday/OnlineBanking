@@ -145,7 +145,6 @@ public class GeneralController {
 		{
 			fromAccount.setDateTransactionsCount(current_date_transactions_count+1);
 			System.out.println("came in here bro"+ current_date_transactions_count );
-			
 		}
 		else
 		{
