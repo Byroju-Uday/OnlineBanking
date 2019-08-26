@@ -17,31 +17,28 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
 @Entity
 @Table
 public class Account {
-    
+
 	@Id
 	@GeneratedValue()
-	private long id;
-	
-	@Column
-	private String accountType;
-	
 	@Column
 	private long accountNumber;
-	
+
+	@Column
+	private String accountType;
+
 	@Column
 	private long accountBalance;
-	
+
 	@Column
 	private String lastTransactionDate;
-	
+
 	@Column
 	private long dateTransactionsCount;
-	
-	
+
+
 	public String getLastTransactionDate() {
 		return lastTransactionDate;
 	}
@@ -59,20 +56,20 @@ public class Account {
 	@JsonBackReference
 	@JoinColumn(name = "customerId" , nullable = false)
 	private Customer customer;
-	
+
 	public Account(){
-		
+
 	}
-	
+
 	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonManagedReference
-    private Set<Transaction> transactionSet = new HashSet<>();
-	
+	private Set<Transaction> transactionSet = new HashSet<>();
+
 	public void addTransaction(Transaction transaction)
-    {
-    	this.transactionSet.add(transaction);
-    	
-    }
+	{
+		this.transactionSet.add(transaction);
+
+	}
 	public Set<Transaction> getTransactionSet() {
 		return transactionSet;
 	}
@@ -80,47 +77,7 @@ public class Account {
 	public void setTransactionSet(Set<Transaction> transactionSet) {
 		this.transactionSet = transactionSet;
 	}
-	
-	public long getId() {
-		return id;
-	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	public String getAccountType() {
-		return accountType;
-	}
-	
-	public void setAccountType(String accountType) {
-		this.accountType = accountType;
-	}
-	
-	public long getAccountNumber() {
-		return accountNumber;
-	}
-	
-	public void setAccountNumber(long accountNumber) {
-		this.accountNumber = accountNumber;
-	}
-	
-	public long getAccountBalance() {
-		return accountBalance;
-	}
-	
-	public void setAccountBalance(long accountBalance) {
-		this.accountBalance = accountBalance;
-	}
 
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -128,9 +85,6 @@ public class Account {
 		result = prime * result + (int) (accountBalance ^ (accountBalance >>> 32));
 		result = prime * result + (int) (accountNumber ^ (accountNumber >>> 32));
 		result = prime * result + ((accountType == null) ? 0 : accountType.hashCode());
-		result = prime * result + (int) (dateTransactionsCount ^ (dateTransactionsCount >>> 32));
-		result = prime * result + (int) (id ^ (id >>> 32));
-		result = prime * result + ((lastTransactionDate == null) ? 0 : lastTransactionDate.hashCode());
 		return result;
 	}
 	@Override
@@ -151,18 +105,37 @@ public class Account {
 				return false;
 		} else if (!accountType.equals(other.accountType))
 			return false;
-		if (dateTransactionsCount != other.dateTransactionsCount)
-			return false;
-		if (id != other.id)
-			return false;
-		if (lastTransactionDate == null) {
-			if (other.lastTransactionDate != null)
-				return false;
-		} else if (!lastTransactionDate.equals(other.lastTransactionDate))
-			return false;
 		return true;
 	}
+	public String getAccountType() {
+		return accountType;
+	}
 
-	
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
 
+	public long getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(long accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public long getAccountBalance() {
+		return accountBalance;
+	}
+
+	public void setAccountBalance(long accountBalance) {
+		this.accountBalance = accountBalance;
+	}
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 }

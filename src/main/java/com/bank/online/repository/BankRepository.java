@@ -1,15 +1,11 @@
 package com.bank.online.repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.bank.online.model.BankEmployee;
+import com.bank.online.model.Bank;
 
 @Repository
-public interface BankRepository extends JpaRepository<BankEmployee, Long>{
-
-	Optional<BankEmployee> findByEmployeeIdAndEmployeePassword(long id,String pwd);
+public interface BankRepository extends JpaRepository<Bank,Long>{
 
 }

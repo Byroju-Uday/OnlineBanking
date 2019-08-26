@@ -33,7 +33,7 @@ public class CustomerRestController {
 	private CustomerService customerService;
 	
 	
-	@GetMapping(value = "profile/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/profile/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public Customer findById(@PathVariable("id") long id)
 	{
 		System.out.println("Inside Get method of FindById");
@@ -65,7 +65,7 @@ public class CustomerRestController {
 		System.out.println("came inside the checking function");
 	}
 	
-	@GetMapping(value = "accounts/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/accounts/{id}", produces = {MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
 	public Set<Account> listAccounts(@PathVariable("id") long id)
 	{
 		return this.customerService.listAccounts(id);

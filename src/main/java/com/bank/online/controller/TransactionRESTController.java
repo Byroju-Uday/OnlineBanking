@@ -46,6 +46,7 @@ public class TransactionRESTController {
         return this.transactionService.listAllTransactions();
     }
 
+
 	 @PostMapping(value = "/saveTransaction")
 	 public boolean saveTransaction(@Valid @RequestBody TransactionUtil transactionUtil) throws ParseException{
 		 boolean output = true;
@@ -57,9 +58,7 @@ public class TransactionRESTController {
 			Account fromAccount = accountService.findById(fromAccountId);
 			Account toAccount = accountService.findById(toAccountId);
 			long from_user_balance = fromAccount.getAccountBalance();
-			long to_user_balance = toAccount.getAccountBalance();
-			
-			
+
 			String fromAccount_date = fromAccount.getLastTransactionDate();
 			java.sql.Date cur_date = new java.sql.Date(System.currentTimeMillis());
 			long current_date_transactions_count = fromAccount.getDateTransactionsCount();

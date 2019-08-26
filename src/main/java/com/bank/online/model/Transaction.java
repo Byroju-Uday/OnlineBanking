@@ -44,7 +44,7 @@ public class Transaction {
 	
 	@ManyToOne
 	@JsonBackReference
-	@JoinColumn(name = "accountId" , nullable = false)
+	@JoinColumn(name = "accountNumber" , nullable = false)
 	private Account account;
 	
 	public Transaction(){
@@ -127,12 +127,14 @@ public class Transaction {
 		this.account = account;
 	}
 
+
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		//result = prime * result + ((account == null) ? 0 : account.hashCode());
-		result = prime * result + (int) (updatedBalance ^ (updatedBalance >>> 32));
+		result = prime * result + ((account == null) ? 0 : account.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result + (int) (fromAccountId ^ (fromAccountId >>> 32));
 		result = prime * result + ((status == null) ? 0 : status.hashCode());
@@ -141,6 +143,7 @@ public class Transaction {
 		result = prime * result + (int) (transactionAmount ^ (transactionAmount >>> 32));
 		result = prime * result + (int) (transactionId ^ (transactionId >>> 32));
 		result = prime * result + ((typeOfTransaction == null) ? 0 : typeOfTransaction.hashCode());
+		result = prime * result + (int) (updatedBalance ^ (updatedBalance >>> 32));
 		return result;
 	}
 
@@ -157,8 +160,6 @@ public class Transaction {
 			if (other.account != null)
 				return false;
 		} else if (!account.equals(other.account))
-			return false;
-		if (updatedBalance != other.updatedBalance)
 			return false;
 		if (date == null) {
 			if (other.date != null)
@@ -185,14 +186,17 @@ public class Transaction {
 				return false;
 		} else if (!typeOfTransaction.equals(other.typeOfTransaction))
 			return false;
+		if (updatedBalance != other.updatedBalance)
+			return false;
 		return true;
 	}
 
+	
 	@Override
 	public String toString() {
 		return "Transaction [transactionId=" + transactionId + ", date=" + date + ", timeStamp=" + timeStamp
 				+ ", typeOfTransaction=" + typeOfTransaction + ", transactionAmount=" + transactionAmount
-				+ ", availableBalance=" + updatedBalance + ", fromAccountId=" + fromAccountId + ", toAccountId="
+				+ ", updatedBalance=" + updatedBalance + ", fromAccountId=" + fromAccountId + ", toAccountId="
 				+ toAccountId + ", status=" + status + ", account=" + account + "]";
 	}
 
