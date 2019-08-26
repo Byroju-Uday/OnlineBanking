@@ -30,8 +30,8 @@ import com.bank.online.service.TransactionService;
 @RequestMapping(value = "/api/v1/")
 public class TransactionRESTController {
 	
-	long minimum_balance = 3000;
-	long DailyTransactionLimit = 3;
+	long minimum_balance = 5000;
+	long DailyTransactionLimit = 10000;
 
 	@Autowired
 	private TransactionService transactionService;
@@ -69,19 +69,19 @@ public class TransactionRESTController {
 			
 			if(fromAccount_date.toString().equals(cur_date.toString()))
 			{
-				fromAccount.setDateTransactionsCount(current_date_transactions_count+1);
+				fromAccount.setDateTransactionsCount(current_date_transactions_count+transactionAmount);
 				System.out.println("came in here bro"+ current_date_transactions_count );
 				
 			}
 			else
 			{
 				fromAccount.setLastTransactionDate(cur_date.toString());
-				fromAccount.setDateTransactionsCount(1);
+				fromAccount.setDateTransactionsCount(transactionAmount);
 				
 				System.out.println("Came into else block as dates are not equal");
 				// transaction should be done....
 			}
-			if(current_date_transactions_count < DailyTransactionLimit)
+			if((current_date_transactions_count+transactionAmount) <= DailyTransactionLimit)
 			{
 				if(transactionAmount <= from_user_balance && (from_user_balance-transactionAmount)>=minimum_balance)
 				{
@@ -141,7 +141,7 @@ public class TransactionRESTController {
 			else
 			{
 				// transaction should not be done...as out of limit..........
-				System.out.println("transaction should not be done...as out of limit..........");
+				System.out.println("transaction should not be done...as Daily transactionlimit is exceeded for this transactionAmount..........");
 				return false;
 			}
 			
