@@ -50,28 +50,31 @@ public class BankEmployeeServiceImpl implements BankEmployeeService{
     	System.out.println(customerresult);
     	System.out.println(customer);
     	customerresult.setCustomerId(customerId);
-    	if(customer.getCustomerName() != null) {
+    	if(customer.getCustomerName() != "")
+    	{
+    	System.out.println("customers name change form space:" + customer.getCustomerName());
+    	System.out.println("customers name change main space:" + customerresult.getCustomerName());
     	customerresult.setCustomerName(customer.getCustomerName());
     	}
-    	if(customer.getAadharNo() != customerresult.getAadharNo()) {
+    	if(customer.getAadharNo() != 0) {
         	customerresult.setAadharNo(customer.getAadharNo());
         }
-    	if(customer.getPancardNo() != null) {
+    	if(customer.getPancardNo() != "") {
     		customerresult.setPancardNo(customer.getPancardNo());
         }
-    	if(customer.getAddress() != null) {
+    	if(customer.getAddress() != "") {
     		customerresult.setAddress(customer.getAddress());
         }
-    	if(customer.getPassword() != null) {
+    	if(customer.getPassword() != "") {
     		customerresult.setPassword(customer.getPassword());
         } 
-    	if(customer.getPhoneNo() != customerresult.getPhoneNo()) {
+    	if(customer.getPhoneNo() != 0) {
     		customerresult.setPhoneNo(customer.getPhoneNo());
         }
-    	if(customer.getEmailId() != null) {
+    	if(customer.getEmailId() != "") {
     		customerresult.setEmailId(customer.getEmailId());
         }
-    	if(customer.getDob() != null) {
+    	if(customer.getDob() != "") {
     		customerresult.setDob(customer.getDob());
         }
         System.out.println("The Records"+customerresult);
