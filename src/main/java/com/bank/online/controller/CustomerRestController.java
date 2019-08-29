@@ -1,5 +1,6 @@
 package com.bank.online.controller;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -49,7 +50,9 @@ public class CustomerRestController {
 		if(customer!=null)
 		{	
 			System.out.println("Customer is found with that ID");
-			if(customer.getPassword().equals(customerCredentials.password))
+			byte[] decodedBytes = Base64.getDecoder().decode(customer.getPassword());
+			String decodedPassword = new String(decodedBytes);
+			if(decodedPassword.equals(customerCredentials.password))
 			{
 				return true;
 			}

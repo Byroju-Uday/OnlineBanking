@@ -1,5 +1,6 @@
 package com.bank.online.controller;
 
+import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +52,13 @@ public class BankEmployeeRestController {
 	 
 	 @PostMapping(value = "/")
 	    public Customer saveCustomers(@Valid @RequestBody Customer customer){
+		 String encodedString = Base64.getEncoder().encodeToString(customer.getPassword().getBytes());
+		 byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+		 String decodedString = new String(decodedBytes);
+		 
+		 //System.out.println("This is the encoded string "+encodedString);
+		 //System.out.println("This is the decoded string "+decodedString);
+		 customer.setPassword(encodedString);
 		 return this.bankEmployeeService.saveCustomer(customer);
 	    }
 	 
