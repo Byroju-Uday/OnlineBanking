@@ -28,14 +28,12 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	@Transactional
 	public Account saveAccount(Account account) {
-		// TODO Auto-generated method stub
 		return accountRepository.save(account);
 	}
 	
 	@Override
 	@Transactional
 	public List<Account> listAll() {
-		// TODO Auto-generated method stub
 		List<Account> list = new ArrayList<>();
     	this.accountRepository.findAll().forEach(account -> list.add(account));
     	return list;
@@ -44,14 +42,12 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	@Transactional
 	public Account findById(long accountId) {
-		// TODO Auto-generated method stub
 		return this.accountRepository.findById(accountId).get();
 	}
 
 	@Override
 	@Transactional
 	public void deleteAccount(long accountId) {
-		// TODO Auto-generated method stub
 		System.out.println("Deleting account based on Id");
 		this.accountRepository.deleteById(accountId);
 		
@@ -59,7 +55,6 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public Optional<Account> listById(long accountId) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

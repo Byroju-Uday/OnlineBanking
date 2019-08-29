@@ -2,6 +2,7 @@ package com.bank.online.controller;
 
 import java.util.Base64;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
@@ -43,10 +44,11 @@ public class CustomerRestController {
 	
 	
 	@PostMapping(value="/customerLoginValidation")
-	public boolean customerLoginValidaiton(@Valid @RequestBody CustomerCredentials customerCredentials) {
-		
-		System.out.println("came inside the customerLoginValidation function of CustomerRestController");
-		Customer customer = customerService.listById(customerCredentials.customerId);
+	public boolean customerLoginValidaiton(@Valid @RequestBody CustomerCredentials customerCredentials){
+		System.out.println("came inside the customerLoginValidation function of CustomerRestController");	
+		Customer customer = customerService.listById(customerCredentials.customerId);	
+	
+
 		if(customer!=null)
 		{	
 			System.out.println("Customer is found with that ID");
@@ -58,8 +60,8 @@ public class CustomerRestController {
 			}
 		}
 		
-		return false;
 		
+		return false;
 	}
 	
 	@PostMapping(value="/checking")

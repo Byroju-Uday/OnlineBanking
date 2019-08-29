@@ -30,14 +30,12 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@Transactional
 	public Customer saveCustomer(Customer customer) {
-		// TODO Auto-generated method stub
 		return customerRepository.save(customer);
 	}
 	
 	@Override
 	@Transactional
 	public List<Customer> listAll() {
-		// TODO Auto-generated method stub
 		List<Customer> list = new ArrayList<>();
     	this.customerRepository.findAll().forEach(customer -> list.add(customer));
     	return list;
@@ -46,22 +44,18 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	@Transactional
 	public Customer listById(long customerId) {
-		// TODO Auto-generated method stub
 		return this.customerRepository.findById(customerId).get();
 	}
 
 	@Override
 	@Transactional
 	public void deleteCustomer(long customerId) {
-		// TODO Auto-generated method stub
 		this.customerRepository.deleteById(customerId);
 	}
 
 	@Override
 	public Set<Account> listAccounts(long customerId) {
-		// TODO Auto-generated method stub
-		Customer customer = listById(customerId);
-		
+		Customer customer = listById(customerId);		
 		return customer.getBankAccountSet();
 	}
 }

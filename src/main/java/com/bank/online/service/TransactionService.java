@@ -9,14 +9,14 @@ import com.bank.online.model.Transaction;
 public interface TransactionService {
 
 
-	   List<Transaction> listAllTransactions();
+	List<Transaction> listAllTransactions();
 
-	   Transaction findById(long transactionId);
+	Transaction findById(long transactionId);
 
-	   void deleteTransaction(long transactionId);
+	void deleteTransaction(long transactionId);
 
 	public Transaction saveTransaction(Transaction transaction);
-	  
-	
+
+
 
 }
